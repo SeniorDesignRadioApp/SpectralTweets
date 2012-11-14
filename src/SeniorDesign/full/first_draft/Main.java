@@ -78,6 +78,7 @@ public class Main extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
+    	unregisterReceiver(receiver);
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
         	@SuppressWarnings("unused")
 			AlertDialog alertbox = new AlertDialog.Builder(this)
