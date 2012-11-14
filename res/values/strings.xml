@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">wifi_gps</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_wifi_gps">WifiGPS</string>
+    <string name="button_start">Start</string>
+    <string name="button_stop">Stop</string>
+
+</resources>
