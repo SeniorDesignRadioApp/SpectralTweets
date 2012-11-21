@@ -1,5 +1,7 @@
 package SeniorDesign.full.first_draft;
 
+import java.text.DecimalFormat;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +33,9 @@ public class GPSscanner extends Service implements LocationListener {
 	private double latitude_temp = 0;
 	private double longitude_temp = 0;
 	private int lat_long_count_temp = 0;
+	
+	DecimalFormat lat = new DecimalFormat("00.000000");
+	DecimalFormat lon = new DecimalFormat("000.000000");
 
 	/**
 	 * On "startMessages" start LocationManager (gps service)
@@ -66,8 +71,8 @@ public class GPSscanner extends Service implements LocationListener {
 	    	String str = "";
 	    	if(longitude_temp != 0 && latitude_temp != 0 && lat_long_count_temp != 0) {
 		    	double average_longitude = longitude_temp / lat_long_count_temp;
-		    	double averate_latitude = latitude_temp / lat_long_count_temp;
-		    	str = "Display Count = " + display_count + "\n" + "Latitude = " + averate_latitude + "\n" + "Longitude = " + average_longitude + "\n\n";
+		    	double average_latitude = latitude_temp / lat_long_count_temp;
+//		    	str = "Display Count = " + display_count + "\n" + "Latitude = " + average_latitude + "\n" + "Longitude = " + average_longitude + "\n\n";
 		    	Main.wifi.startScan();
 		    	/* 
 		    	 * the app seems to hang sometimes and never show results from the first scan
@@ -77,6 +82,13 @@ public class GPSscanner extends Service implements LocationListener {
 		    	 */
 		    	while (! Main.ready_flag);
 		    	str += Main.wifi_info;
+		    	String latitude = lat.format(average_latitude).replace(".",  "");
+		    	String longitude = lon.format(average_longitude).replace(".",  "");
+		    	String final_latitude = (average_latitude > 0 ? "+" : "") + latitude;
+		    	String final_longitude = (average_longitude > 0 ? "+" : "") + longitude;
+		    	str += "GPS Info\n";
+		    	str += "lat " + final_latitude + "\n";
+		    	str += "lon " + final_longitude + "\n";
 		    	Main.changeText(str);
 		    	Main.ready_flag = false;
 		    	display_count++;
