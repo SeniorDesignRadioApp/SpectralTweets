@@ -69,6 +69,12 @@ public class GPSscanner extends Service implements LocationListener {
 		    	double averate_latitude = latitude_temp / lat_long_count_temp;
 		    	str = "Display Count = " + display_count + "\n" + "Latitude = " + averate_latitude + "\n" + "Longitude = " + average_longitude + "\n\n";
 		    	Main.wifi.startScan();
+		    	/* 
+		    	 * the app seems to hang sometimes and never show results from the first scan
+		    	 * it's probably happening in this while loop if for some reason the requested
+		    	 * scan times out or fails
+		    	 * TODO: add a way to break out and keep executing if that happens
+		    	 */
 		    	while (! Main.ready_flag);
 		    	str += Main.wifi_info;
 		    	Main.changeText(str);

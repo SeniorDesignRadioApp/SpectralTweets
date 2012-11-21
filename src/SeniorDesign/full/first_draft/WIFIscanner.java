@@ -63,7 +63,7 @@ public class WIFIscanner extends BroadcastReceiver {
 		{
 			if (channel_info[i] != null)
 			{
-				tmp = channels.indexOf(Integer.valueOf(channel_info[i].frequency)) + " " + channel_info[i].level + " " + channel_info[i].BSSID + "\n";
+				tmp = channels.indexOf(Integer.valueOf(channel_info[i].frequency)) + " " + channel_info[i].level + " " + channel_info[i].BSSID.replace(":", "") + "\n";
 				str += tmp;
 			}
 		}
