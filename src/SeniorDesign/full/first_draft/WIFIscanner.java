@@ -18,8 +18,7 @@ public class WIFIscanner extends BroadcastReceiver {
 	private final static ArrayList<Integer> channel_numbers = new ArrayList<Integer> (Arrays.asList(0, 2412, 2417, 2422, 2427, 2432, 2437, 2442, 2447, 2452, 2457, 2462));
 	List <ScanResult> results;
 	Map<Integer, String> levels = new HashMap<Integer, String>();
-	ArrayList<String> channels = new ArrayList<String> (Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b"));
-	String empty_channel = "___________";		// 11 spaces
+	String empty_channel = "__________";		// 10 spaces
 	
 	public WIFIscanner(Main main)
 	{
@@ -129,22 +128,22 @@ public class WIFIscanner extends BroadcastReceiver {
 			}
 		}
 		
-		str += "\nfinal results\n";
+//		str += "\nfinal results\n";
 		
 		for (int i = 1; i < 12; i++)
 		{
-			str += "channel " + i + "\n";
+//			str += "channel " + i + "\n";
 			if (channel_info[i] != null)
 			{
-				tmp = channel_numbers.indexOf(Integer.valueOf(channel_info[i].frequency)) + " " + channel_info[i].level + " " + channel_info[i].BSSID.replace(":", "").substring(3, 11) + "\n";
-				tmp += channels.get(channel_numbers.indexOf(Integer.valueOf(channel_info[i].frequency))) + levels.get(channel_info[i].level) + channel_info[i].BSSID.replace(":", "").substring(3, 11);
-				str += tmp + "\n";
+//				tmp = channel_numbers.indexOf(Integer.valueOf(channel_info[i].frequency)) + " " + channel_info[i].level + " " + channel_info[i].BSSID.replace(":", "").substring(3, 11) + "\n";
+				tmp = (levels.get(channel_info[i].level) == null ? "0" : levels.get(channel_info[i].level))  + channel_info[i].BSSID.replace(":", "").substring(2, 11);
+				str += tmp;
 			}
 			else
 			{
-				tmp = "no info\n";
-				tmp += empty_channel;
-				str += tmp + "\n";
+//				tmp = "no info\n";
+				tmp = empty_channel;
+				str += tmp;
 			}
 		}
 		

@@ -86,9 +86,11 @@ public class GPSscanner extends Service implements LocationListener {
 		    	String longitude = lon.format(average_longitude).replace(".",  "");
 		    	String final_latitude = (average_latitude > 0 ? "+" : "") + latitude;
 		    	String final_longitude = (average_longitude > 0 ? "+" : "") + longitude;
-		    	str += "GPS Info\n";
-		    	str += "lat " + final_latitude + "\n";
-		    	str += "lon " + final_longitude + "\n";
+//		    	str += "GPS Info\n";
+		    	str += final_latitude;
+		    	str += final_longitude;
+//		    	int size = str.length();
+//		    	str += "\nsize is: " + size;
 		    	Main.changeText(str);
 		    	Main.ready_flag = false;
 		    	display_count++;
